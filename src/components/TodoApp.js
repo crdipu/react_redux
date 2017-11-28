@@ -27,23 +27,6 @@ export default class TodoApp extends React.Component {
                 id: id
             });
         }}/>
-        {/* <ul>
-            {
-                this.props.todos.map(todo => 
-                    <li key={todo.id}
-                    onClick={() => {
-                        this.props.store.dispatch({
-                            type: types.TOGGLE_TODO,
-                            id: todo.id
-                        })
-                    }}
-                    style={{textDecoration: todo.completed?'line-through':'none'}}
-                    >
-                        {todo.text}
-                    </li>
-                )
-            }
-        </ul> */}
         <p>
             Show:
             {' '}
