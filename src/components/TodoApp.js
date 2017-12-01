@@ -2,41 +2,42 @@ import React from 'react';
 import * as types from '../constants/types';
 import FilterLink from './FilterLink';
 import TodoList from './TodoList';
+import AddTodo from './AddTodo';
+import TodoFooter from './TodoFooter';
 
 let nextTodoId = 0;
-export default class TodoApp extends React.Component {
-  render() {
+export default function TodoApp (props) {
     return (
      <div style={{textAlign: 'center'}}>
-        <input ref={node => {this.input = node}} />
-        <button onClick={() => {this.props.store.dispatch({
-                    type:types.ADD_TODO,
-                    text: this.input.value,
-                    id: nextTodoId++
-                })
-                this.input.value = '';
-            }
-        }
-        >
-            Add Todo
-        </button>
-        <h3>{this.props.todos.length}</h3>
-        <TodoList todos = {this.props.todos} onTodoClick={(id) => {
-            this.props.store.dispatch({
+        <AddTodo onAddClick={(addTodoText)=>{
+                        props.store.dispatch(
+                            {
+                                type:types.ADD_TODO,
+                                text: addTodoText,
+                                id: nextTodoId++
+                            }
+                        )
+                    }
+                }/>
+        <h3>{props.todos.length}</h3>
+        <TodoList todos = {props.todos} onTodoClick={(id) => {
+                props.store.dispatch({
                 type: types.TOGGLE_TODO,
                 id: id
             });
         }}/>
-        <p>
-            Show:
-            {' '}
-            <FilterLink filter={types.SHOW_ALL} store={this.props.store}>All</FilterLink>
-            {' '}
-            <FilterLink filter={types.SHOW_ACTIVE} store={this.props.store}>Active</FilterLink>
-            {' '}
-            <FilterLink filter={types.SHOW_COMPLETED} store={this.props.store}>Completed</FilterLink>
-            
-        </p>
+        <TodoFooter 
+            store={props.store} 
+            onFooterClick={(filter)=>{
+                    props.store.dispatch(
+                        {
+                            type: types.SET_VISIBILITY_FILTER,
+                            filter
+                        }
+                    )
+                }
+            }
+            visibilityFilter={props.store.getState().visibilityFilter}
+        /> 
       </div>);
-  }
 }
