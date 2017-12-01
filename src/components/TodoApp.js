@@ -27,17 +27,7 @@ export default function TodoApp (props) {
             });
         }}/>
         <TodoFooter 
-            store={props.store} 
-            onFooterClick={(filter)=>{
-                    props.store.dispatch(
-                        {
-                            type: types.SET_VISIBILITY_FILTER,
-                            filter
-                        }
-                    )
-                }
-            }
-            visibilityFilter={props.store.getState().visibilityFilter}
+            store={props.store}
         /> 
       </div>);
 }
