@@ -2,6 +2,7 @@ import React from 'react';
 import Todo from './Todo'
 import * as types from '../constants/types';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 
 let nextTodoId = 0;
 /**
@@ -9,13 +10,13 @@ let nextTodoId = 0;
  * "{store}" is equivalent to {store} = context
  */
 
-export default function AddTodo(props, {store}) {
+const AddTodoFunction = function (props) {
     let input;
     return (
         <div>
             <input ref={node => {input = node}} />
             <button onClick={() => {
-                    store.dispatch(
+                    props.dispatch(
                         {
                             type:types.ADD_TODO,
                             text: input.value,
@@ -32,6 +33,15 @@ export default function AddTodo(props, {store}) {
     );
   }
 
-  AddTodo.contextTypes = {
-    store: PropTypes.object
-  };
+const mapStateToProps = null;
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        dispatch: dispatch
+    }
+}
+
+export const AddTodo = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(AddTodoFunction);
