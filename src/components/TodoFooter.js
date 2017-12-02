@@ -7,11 +7,11 @@ export default function TodoFooter(props) {
         <p>
             Show:
             {' '}
-            <FilterLink filter={types.SHOW_ALL} store={props.store}>All</FilterLink>
+            <FilterLink filter={types.SHOW_ALL}>All</FilterLink>
             {' '}
-            <FilterLink filter={types.SHOW_ACTIVE} store={props.store}>Active</FilterLink>
+            <FilterLink filter={types.SHOW_ACTIVE}>Active</FilterLink>
             {' '}
-            <FilterLink filter={types.SHOW_COMPLETED} store={props.store}>Completed</FilterLink>
+            <FilterLink filter={types.SHOW_COMPLETED}>Completed</FilterLink>
         
         </p>
     );

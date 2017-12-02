@@ -1,10 +1,12 @@
 import React from 'react';
 import * as types from '../constants/types';
 import NewLink from './NewLink';
+import PropTypes from 'prop-types';
 
 export default class FilterLink extends React.Component {
   componentDidMount() {
-    this.unSubscribe = this.props.store.subscribe(()=>{
+    const store = this.context.store;
+    this.unSubscribe = store.subscribe(()=>{
       this.forceUpdate();
     });
   }
@@ -15,12 +17,13 @@ export default class FilterLink extends React.Component {
 
   render() {
     const props = this.props;
-    const state = props.store.getState();
+    const store = this.context.store;
+    const state = store.getState();
     return(
       <NewLink
         active={(props.filter==state.visibilityFilter)}
         onClick={()=>{
-          props.store.dispatch({
+          store.dispatch({
             type: types.SET_VISIBILITY_FILTER,
             filter: props.filter
           })
@@ -31,3 +34,7 @@ export default class FilterLink extends React.Component {
     );
   }
 }
+
+FilterLink.contextTypes = {
+  store: PropTypes.object
+};

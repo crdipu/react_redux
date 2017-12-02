@@ -9,11 +9,11 @@ export default function TodoApp (props) {
     return (
      <div style={{textAlign: 'center'}}>
 
-        <AddTodo store={props.store}/>
+        <AddTodo/>
 
-        <VisibleTodoList  store={props.store}/>
+        <VisibleTodoList/>
 
-        <TodoFooter store={props.store}/> 
+        <TodoFooter/> 
 
       </div>);
 }
