@@ -3,6 +3,7 @@ import * as types from '../constants/types';
 import NewLink from './NewLink';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
+import {clickOnFooterLink} from '../actions/clickOnFooterLink';
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -13,10 +14,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     onClick: () => {
-          dispatch({
-            type: types.SET_VISIBILITY_FILTER,
-            filter: ownProps.filter
-          });
+          dispatch(clickOnFooterLink(ownProps.filter));
       }
   }
 }
