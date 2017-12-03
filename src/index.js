@@ -7,7 +7,17 @@ import TodoApp from './containers/TodoApp';
 import PropTypes from 'prop-types';
 import {Provider} from 'react-redux';
 
-const store = createStore(todoappreducer);
+const persistedState = {
+    todos:[
+        {
+            id: 0,
+            text: 'Test 1',
+            completed: false
+        }
+    ]
+}
+
+const store = createStore(todoappreducer, persistedState);
 
 ReactDOM.render(
     <Provider store={store}> 
