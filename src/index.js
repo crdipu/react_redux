@@ -6,18 +6,14 @@ import todoappreducer from './reducers/';
 import TodoApp from './containers/TodoApp';
 import PropTypes from 'prop-types';
 import {Provider} from 'react-redux';
+import {loadState, saveState} from './lib/localStorage';
+import throttle from 'lodash/throttle';
 
-const persistedState = {
-    todos:[
-        {
-            id: 0,
-            text: 'Test 1',
-            completed: false
-        }
-    ]
-}
+const store = createStore(todoappreducer, loadState());
 
-const store = createStore(todoappreducer, persistedState);
+store.subscribe(throttle(() => {
+    saveState({todos:store.getState().todos});
+}, 1000));
 
 ReactDOM.render(
     <Provider store={store}> 
@@ -25,6 +21,3 @@ ReactDOM.render(
     </Provider>,
     document.getElementById("root")
 );
-
-
-
