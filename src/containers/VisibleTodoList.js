@@ -41,5 +41,5 @@ const mapDispatchToProps = (dispatch) => {
 
 export const VisibleTodoList = withRouter(connect(
     mapStateToProps,
-    mapDispatchToProps
+    {onTodoClick: toggleTodo}
 )(TodoList));
