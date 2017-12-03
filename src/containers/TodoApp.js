@@ -5,7 +5,6 @@ import TodoFooter from '../components/TodoFooter';
 
 
 export default function TodoApp (params) {
-  console.log(params.match.params.filter);
     return (
      <div style={{textAlign: 'center'}}>
 
