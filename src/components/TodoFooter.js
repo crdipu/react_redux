@@ -1,5 +1,5 @@
 import React from 'react';
-import {FilterLink} from './FilterLink';
+import {FilterLink} from '../containers/FilterLink';
 import * as types from '../constants/types';
 
 export default function TodoFooter(props) {

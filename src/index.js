@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
 import * as types from './constants/types';
 import todoappreducer from './reducers/';
-import TodoApp from './components/TodoApp';
+import TodoApp from './containers/TodoApp';
 import PropTypes from 'prop-types';
 import {Provider} from 'react-redux';
 
