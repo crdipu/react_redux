@@ -9,7 +9,7 @@ const Root = (props) => {
     return (
         <Provider store={props.store}> 
             <Router>
-                <Route path='/' component={TodoApp} />
+                <Route path='/:filter?' component={TodoApp} />
             </Router>
         </Provider>
     );

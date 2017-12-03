@@ -1,26 +1,19 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
-import {clickOnFooterLink} from '../actions/clickOnFooterLink';
-import * as types from '../constants/types';
-import NewLink from '../components/NewLink';
+import {NavLink} from 'react-router-dom';
 
 
-const mapStateToProps = (state, ownProps) => {
-  return {
-    active: (ownProps.filter==state.visibilityFilter)
-  }
+const FilterLink = (props) => {
+  return (
+    <NavLink 
+      to={props.filter === 'all'? '' : props.filter }
+      activeStyle={{
+        textDecoration: 'none',
+        color: 'black'
+      }}
+    >
+      {props.children}
+    </NavLink>
+  );  
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-    onClick: () => {
-          dispatch(clickOnFooterLink(ownProps.filter));
-      }
-  }
-}
-
-export const FilterLink = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(NewLink);
+export default FilterLink;
