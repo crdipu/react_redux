@@ -1691,7 +1691,7 @@ expect@^21.2.1:
     jest-message-util "^21.2.1"
     jest-regex-util "^21.2.0"
 
-express@^4.13.3:
+express@^4.13.3, express@^4.16.2:
   version "4.16.2"
   resolved "https://registry.yarnpkg.com/express/-/express-4.16.2.tgz#e35c6dfe2d64b7dca0a5cd4f21781be3299e076c"
   dependencies:
@@ -3098,7 +3098,7 @@ mime@1.4.1:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/mime/-/mime-1.4.1.tgz#121f9ebc49e3766f311a76e1fa1c8003c4b03aa6"
 
-mime@^1.4.1:
+mime@^1.4.1, mime@^1.5.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/mime/-/mime-1.6.0.tgz#32cd9e5c64553bd58d19a568af452acff04981b1"
 
@@ -4667,6 +4667,16 @@ webpack-dev-middleware@^1.11.0:
   dependencies:
     memory-fs "~0.4.1"
     mime "^1.4.1"
+    path-is-absolute "^1.0.0"
+    range-parser "^1.0.3"
+    time-stamp "^2.0.0"
+
+webpack-dev-middleware@^1.12.2:
+  version "1.12.2"
+  resolved "https://registry.yarnpkg.com/webpack-dev-middleware/-/webpack-dev-middleware-1.12.2.tgz#f8fc1120ce3b4fc5680ceecb43d777966b21105e"
+  dependencies:
+    memory-fs "~0.4.1"
+    mime "^1.5.0"
     path-is-absolute "^1.0.0"
     range-parser "^1.0.3"
     time-stamp "^2.0.0"
