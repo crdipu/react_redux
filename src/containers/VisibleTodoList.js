@@ -6,8 +6,7 @@ import {toggleTodo} from '../actions/toggleTodo';
 import * as types from '../constants/types';
 import TodoList from '../components/TodoList';
 import {getVisibleTodos} from '../reducers'
-import {fetchTodos} from '../lib/api';
-import {receiveTodos} from '../actions/receiveTodos';
+import {fetchTodos} from '../actions/fetchTodos';
 
 class VisibleTodoList extends React.Component {
 
@@ -16,31 +15,25 @@ class VisibleTodoList extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
-        if(this.props.filter !== prevProps.filter) {
-            this.fetchData();        
+        if (this.props.filter !== prevProps.filter) {
+            this.fetchData();
         }
     }
-    
+
     fetchData() {
-        const {filter, receiveTodos} = this.props;
-        fetchTodos(filter).then(todos => {
-            receiveTodos(filter, todos);
-        }); 
+        const {filter, fetchTodos} = this.props;
+        fetchTodos(filter);
     }
 
     render() {
-        return (<TodoList {...this.props} />);
+        return (<TodoList {...this.props}/>);
     }
 }
-
 
 const mapStateToProps = (state, ownProps) => {
     const filter = ownProps.match.params.filter || types.SHOW_ALL
     return {
-        todos: getVisibleTodos(
-            state,
-            filter
-            ),
+        todos: getVisibleTodos(state, filter),
         filter
     }
 }
@@ -48,17 +41,14 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         onTodoClick: (id) => {
-                dispatch(toggleTodo(id));
+            dispatch(toggleTodo(id));
         },
-        receiveTodos: (filter, response) => {
-            dispatch(receiveTodos(filter, response));
+        fetchTodos: (filter) => {
+            dispatch(fetchTodos(filter));
         }
     }
 }
 
-VisibleTodoList = withRouter(connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(VisibleTodoList));
+VisibleTodoList = withRouter(connect(mapStateToProps, mapDispatchToProps)(VisibleTodoList));
 
 export default VisibleTodoList;
